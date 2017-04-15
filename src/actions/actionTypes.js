@@ -1,0 +1,1 @@
+export const LOAD_TOWNS_SUCCESS = "LOAD_TOWNS_SUCCESS";
