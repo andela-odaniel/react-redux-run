@@ -6,21 +6,57 @@ import TownList from './TownsList';
 
 class TownsPage extends React.Component {
     constructor(props, context) {
-        // debugger;
         super(props, context);
+        this.state = {
+            towns: []
+        };
+        this.filterTownsByCityName = this.filterTownsByCityName.bind(this);
+        this.filterTownsByTownName = this.filterTownsByTownName.bind(this);
     }
 
-    // townRow(town, index) {
-    //     // debugger;
-    //     return <div key={index}>{town.name}</div>;
-    // }
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            towns: nextProps.towns
+        });
+    }
+
+    filterTownsByCityName(event){
+        const cityName = event.target.value;
+        if(cityName.length > 0) {
+            this.setState({ 
+                towns: this.props.towns.filter((city) => {
+                    return city.name.indexOf(cityName) >= 0;
+                })
+            });
+        }else{
+            this.setState({
+                towns: this.props.towns
+            });
+        }
+        
+    }
+
+    filterTownsByTownName(event){
+        const townName = event.target.value;
+        if(townName.length > 0){
+            this.setState({ 
+                towns: this.props.towns.filter((city) => {
+                    return city.towns.filter(town => town.name.indexOf(townName) > -1 ).length > 0;
+                })
+            });
+        }else{
+            this.setState({
+                towns: this.props.towns
+            });
+        }
+    }
 
     render() {
-        // debugger;
         return (
             <div>
                 <h1>Towns</h1>
-                <TownList towns={this.props.towns} />
+                <input type="text" onChange={this.filterTownsByTownName}/>
+                <TownList towns={this.state.towns} />
             </div>
         );
     }

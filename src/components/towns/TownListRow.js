@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import SmallTown from './SmallTown';
 
 const TownListRow = ({name, id, towns}) => {
-    debugger;
     return (
         <tr>
             <td>{name}</td>

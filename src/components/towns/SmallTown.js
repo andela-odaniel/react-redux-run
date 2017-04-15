@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 const SmallTown = ({ name, id, postal }) => {
-    debugger;
     return (
         <tr>
             <td>{name}</td>
